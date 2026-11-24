@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Bugti Editz</string>
+    <string name="studio_subtitle">S t u d i o</string>
+    <string name="search_tools_hint">Search</string>
+    <string name="pro_banner_pill">4K UHD &amp; Pro Suite &gt;</string>
+    <string name="action_edit">Edit</string>
+    <string name="action_retouch">Retouch</string>
+    <string name="tab_home">Home</string>
+    <string name="tab_templates">Templates</string>
+    <string name="tab_cloud">Cloud</string>
+    <string name="tab_me">Me</string>
+    <string name="quality_enhancer_title">Quality Enhancer</string>
+    <string name="quality_enhancer_subtitle">Advanced clarity — less noise, more detail</string>
+    <string name="segment_general">General</string>
+    <string name="segment_scenario">Scenario</string>
+    <string name="cta_try_now">Try now</string>
+    <string name="action_save">Save</string>
+    <string name="label_cover">Cover</string>
+</resources>

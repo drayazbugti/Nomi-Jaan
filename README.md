@@ -1,11 +1,9 @@
-<div align="center">
+# BUGTI EDITZ
 
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+Android photo and video editor with AI enhancement, FX effects picker, Curve/Regular speed editor, 18 filter categories, clip transitions, transform/crop/rotate/fit tools, 300% audio boost, 100 offline stickers, 100 fonts, and cloud project sync.
 
-  <h1>Built with AI Studio</h2>
+## Direct APK Download (Always Latest)
 
-  <p>The fastest path from prompt to production with Gemini.</p>
+[Download Bugti Editz APK](https://github.com/drayazbugti/Bugti-Edits-App/releases/latest/download/Bugti-Editz.apk)
 
-  <a href="https://aistudio.google.com/apps">Start building</a>
-
-</div>
+Every push to `main` automatically builds the newest `Bugti-Editz.apk` via GitHub Actions and publishes it to the permanent `latest` GitHub Release above.

@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Me — Studio Profile & Drafts</title>
+  <style>
+    /* ==================== BLACK THEME & WHITE THEME ==================== */
+    :root[data-theme="dark"] {
+      --bg: #0c0d12;
+      --bg-grad: radial-gradient(circle at 75% 12%, #242136 0%, #0c0d12 58%);
+      --card: #17181f;
+      --card-2: #1f212b;
+      --glass: linear-gradient(135deg, rgba(255,255,255,0.11), rgba(255,255,255,0.04));
+      --text: #f5f6fa;
+      --muted: #8e92a4;
+      --border: rgba(255, 255, 255, 0.08);
+      --pill-bg: #232530;
+      --pill-text: #ffffff;
+      --sheet-bg: #1c1d24;
+      --cancel-bg: #2a2c36;
+      --nav-bg: rgba(14, 15, 20, 0.94);
+      --accent: #8b6eff;
+      --danger: #ff4d67;
+    }
+
+    :root[data-theme="light"] {
+      --bg: #f4f5f9;
+      --bg-grad: radial-gradient(circle at 75% 10%, #e4e7f5 0%, #f4f5f9 60%);
+      --card: #ffffff;
+      --card-2: #eef0f6;
+      --glass: linear-gradient(135deg, #ffffff, #ebedf7);
+      --text: #12141c;
+      --muted: #656a7c;
+      --border: rgba(18, 20, 28, 0.09);
+      --pill-bg: #14161f;
+      --pill-text: #ffffff;
+      --sheet-bg: #ffffff;
+      --cancel-bg: #eceef5;
+      --nav-bg: rgba(255, 255, 255, 0.95);
+      --accent: #6c47ff;
+      --danger: #e63950;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    body {
+      background: var(--bg);
+      background-image: var(--bg-grad);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      transition: background 0.25s ease, color 0.25s ease;
+    }
+
+    .app-shell {
+      width: 100%;
+      max-width: 440px;
+      min-height: 100vh;
+      padding: 14px 16px 86px;
+      position: relative;
+    }
+
+    /* ==================== TOP HEADER ==================== */
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 18px;
+    }
+
+    .coin-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 5px 11px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .coin-dot {
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #ffd166, #f4a261);
+      display: inline-block;
+    }
+
+    .top-icons {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .icon-circle-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 11px;
+      background: transparent;
+      border: 1px solid transparent;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .icon-circle-btn:hover {
+      background: var(--card);
+      border-color: var(--border);
+    }
+
+    /* ==================== PROFILE ROW ==================== */
+    .profile-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .avatar-circle {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: var(--card-2);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+    }
+
+    .login-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .login-sub {
+      font-size: 0.76rem;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    /* ==================== VIP / PRO GLASS CARD ==================== */
+    .vip-card {
+      background: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 15px 16px;
+      margin-bottom: 14px;
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.12);
+    }
+
+    .vip-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 4px;
+    }
+
+    .vip-brand {
+      font-weight: 800;
+      font-size: 1.02rem;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .subscribe-btn {
+      background: var(--pill-bg);
+      color: var(--pill-text);
+      border: none;
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .vip-desc {
+      font-size: 0.77rem;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    .vip-perks {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      padding-bottom: 11px;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.72rem;
+      color: var(--text);
+    }
+
+    .perk-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .perk-icon {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--card-2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 0.72rem;
+    }
+
+    .vip-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 9px;
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    /* ==================== TWO FEATURE CARDS ==================== */
+    .quick-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .quick-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      padding: 14px 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.84rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .quick-badge {
+      padding: 3px 6px;
+      border-radius: 6px;
+      background: var(--card-2);
+      font-size: 0.68rem;
+      font-weight: 800;
+    }
+
+    /* ==================== DRAFTS SECTION ==================== */
+    .drafts-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .drafts-tab {
+      font-size: 0.96rem;
+      font-weight: 700;
+      position: relative;
+      padding-bottom: 6px;
+    }
+
+    .drafts-tab::after {
+      content: "";
+      position: absolute;
+      left: 18%;
+      right: 18%;
+      bottom: 0;
+      height: 3px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+
+    .select-pill {
+      background: var(--card);
+      color: var(--text);
+      border: 1px solid var(--border);
+      padding: 5px 14px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .draft-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .draft-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .draft-thumb {
+      width: 72px;
+      height: 82px;
+      border-radius: 11px;
+      background: var(--card-2);
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 6px;
+      font-size: 0.66rem;
+      color: var(--muted);
+      flex-shrink: 0;
+    }
+
+    .draft-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .draft-title-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+    }
+
+    .draft-name {
+      font-size: 0.94rem;
+      font-weight: 700;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .draft-date {
+      font-size: 0.76rem;
+      color: var(--muted);
+      margin-top: 3px;
+    }
+
+    .draft-bottom-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 10px;
+    }
+
+    .draft-meta {
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    .dots-trigger {
+      background: transparent;
+      border: none;
+      color: var(--text);
+      font-size: 1.15rem;
+      letter-spacing: 2px;
+      padding: 4px 8px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 800;
+    }
+
+    .dots-trigger:hover {
+      background: var(--card-2);
+    }
+
+    .cloud-tag {
+      font-size: 0.66rem;
+      padding: 2px 6px;
+      border-radius: 6px;
+      background: rgba(108, 71, 255, 0.16);
+      color: var(--accent);
+      font-weight: 700;
+      margin-left: 6px;
+    }
+
+    /* ==================== BOTTOM NAV ==================== */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 440px;
+      background: var(--nav-bg);
+      backdrop-filter: blur(12px);
+      border-top: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      padding: 12px 0 14px;
+      text-align: center;
+      z-index: 50;
+    }
+
+    .nav-btn {
+      background: transparent;
+      border: none;
+      color: var(--muted);
+      font-size: 0.92rem;
+      font-weight: 600;
+      cursor: pointer;
+      position: relative;
+      padding-bottom: 5px;
+    }
+
+    .nav-btn.active {
+      color: var(--text);
+      font-weight: 800;
+    }
+
+    .nav-btn.active::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 38%;
+      right: 38%;
+      height: 2.5px;
+      border-radius: 999px;
+      background: var(--text);
+    }
+
+    /* ==================== POPUP 1: SETTINGS SMALL POPUP ==================== */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(4px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      z-index: 300;
+    }
+
+    .modal-backdrop.open {
+      display: flex;
+    }
+
+    .settings-popup {
+      width: 100%;
+      max-width: 340px;
+      background: var(--sheet-bg);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 18px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+      animation: popIn 0.2s ease;
+    }
+
+    @keyframes popIn {
+      from { transform: scale(0.92); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .popup-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+
+    .popup-header h3 {
+      font-size: 1rem;
+      font-weight: 800;
+    }
+
+    .theme-switch-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .theme-choice {
+      padding: 10px;
+      border-radius: 12px;
+      border: 1.5px solid var(--border);
+      background: var(--card-2);
+      color: var(--text);
+      font-weight: 700;
+      font-size: 0.82rem;
+      cursor: pointer;
+    }
+
+    .theme-choice.active {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .setting-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-top: 1px solid var(--border);
+      font-size: 0.83rem;
+    }
+
+    .setting-row input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--accent);
+      cursor: pointer;
+    }
+
+    /* ==================== POPUP 2: BOTTOM ACTION SHEET (LIKE SCREENSHOT 2) ==================== */
+    .sheet-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.62);
+      display: none;
+      align-items: flex-end;
+      justify-content: center;
+      z-index: 350;
+    }
+
+    .sheet-backdrop.open {
+      display: flex;
+    }
+
+    .action-sheet {
+      width: 100%;
+      max-width: 440px;
+      background: var(--sheet-bg);
+      border-top-left-radius: 26px;
+      border-top-right-radius: 26px;
+      padding: 16px 20px 24px;
+      border-top: 1px solid var(--border);
+      animation: slideUp 0.22s ease;
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(100%); }
+      to { transform: translateY(0); }
+    }
+
+    .sheet-item {
+      width: 100%;
+      background: transparent;
+      border: none;
+      color: var(--text);
+      padding: 14px 8px;
+      font-size: 0.96rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      cursor: pointer;
+      border-radius: 12px;
+    }
+
+    .sheet-item:hover {
+      background: var(--card-2);
+    }
+
+    .sheet-item.delete {
+      color: var(--danger);
+    }
+
+    .sheet-cancel {
+      width: 100%;
+      margin-top: 10px;
+      background: var(--cancel-bg);
+      color: var(--text);
+      border: none;
+      padding: 13px;
+      border-radius: 999px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .toast {
+      position: fixed;
+      top: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--pill-bg);
+      color: var(--pill-text);
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      display: none;
+      z-index: 500;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="toast" id="toastMsg">Saved</div>
+
+  <div class="app-shell">
+    <!-- TOP BAR -->
+    <div class="top-bar">
+      <div class="coin-pill" id="creditPill">
+        <span class="coin-dot"></span>
+        <span id="creditCount">0</span>
+        <span>&gt;</span>
+      </div>
+
+      <div class="top-icons">
+        <!-- Layers / Add Draft Button -->
+        <button class="icon-circle-btn" id="newDraftBtn" title="New Project Draft">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="4" y="4" width="16" height="6" rx="2"/>
+            <rect x="4" y="14" width="16" height="6" rx="2"/>
+          </svg>
+        </button>
+
+        <!-- Hexagon Settings Button (Like Screenshot) -->
+        <button class="icon-circle-btn" id="openSettingsBtn" title="Settings">
+          <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="12 2 20.5 7 20.5 17 12 22 3.5 17 3.5 7 12 2"/>
+            <circle cx="12" cy="12" r="3.2"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- PROFILE ROW -->
+    <div class="profile-row">
+      <div class="avatar-circle">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
+          <line x1="9" y1="9" x2="9.01" y2="9"/>
+          <path d="M15 8l1.5 1.5L18 8"/>
+        </svg>
+      </div>
+      <div>
+        <div class="login-title" id="profileName">Log In</div>
+        <div class="login-sub" id="themeBadgeText">Theme: White Theme (Auto-Saved)</div>
+      </div>
+    </div>
+
+    <!-- VIP / GLASS BANNER -->
+    <div class="vip-card">
+      <div class="vip-top">
+        <div class="vip-brand">Pro Studio</div>
+        <button class="subscribe-btn" id="subBtn">Subscribe</button>
+      </div>
+      <div class="vip-desc">Log in to enjoy VIP benefits</div>
+      <div class="vip-perks">
+        <div class="perk-item">
+          <span class="perk-icon">☁</span>
+          <span>Cloud Processing</span>
+        </div>
+        <div class="perk-item">
+          <span class="perk-icon">📁</span>
+          <span>Batch Processing</span>
+        </div>
+        <div class="perk-item">
+          <span class="perk-icon">✦</span>
+          <span>Bonus Credits</span>
+        </div>
+      </div>
+      <div class="vip-footer">
+        <span>Makes every moment shine.</span>
+        <span>Learn more &gt;</span>
+      </div>
+    </div>
+
+    <!-- CLOUD SPACE & QUALITY ENHANCER -->
+    <div class="quick-grid">
+      <div class="quick-card" id="cloudSpaceBtn">
+        <span>☁</span>
+        <span>Cloud Space</span>
+      </div>
+      <div class="quick-card" id="enhancerQuickBtn">
+        <span class="quick-badge">HD</span>
+        <span>Quality Enhancer</span>
+      </div>
+    </div>
+
+    <!-- DRAFTS HEADER -->
+    <div class="drafts-header">
+      <div class="drafts-tab" id="draftsCountLabel">Drafts 2</div>
+      <button class="select-pill" id="selectModeBtn">Select</button>
+    </div>
+
+    <!-- DRAFTS LIST -->
+    <div class="draft-list" id="draftList"></div>
+
+    <!-- BOTTOM NAVIGATION -->
+    <nav class="bottom-nav">
+      <button class="nav-btn" data-tab="Home">Home</button>
+      <button class="nav-btn" data-tab="Templates">Templates</button>
+      <button class="nav-btn active" data-tab="Me">Me</button>
+    </nav>
+  </div>
+
+  <!-- POPUP 1: SMALL SETTINGS POPUP (WHITE THEME / BLACK THEME + AUTO SAVE) -->
+  <div class="modal-backdrop" id="settingsModal">
+    <div class="settings-popup">
+      <div class="popup-header">
+        <h3>Settings</h3>
+        <button class="select-pill" id="closeSettingsBtn">Done</button>
+      </div>
+
+      <div style="font-size:0.78rem;color:var(--muted);margin-bottom:8px;">App Theme</div>
+      <div class="theme-switch-row">
+        <button class="theme-choice" id="chooseWhiteTheme">☀ White Theme</button>
+        <button class="theme-choice" id="chooseBlackTheme">🌙 Black Theme</button>
+      </div>
+
+      <div class="setting-row">
+        <span>ऐप बंद करते ही White Theme हो जाए</span>
+        <input type="checkbox" id="autoWhiteOnClose" checked />
+      </div>
+
+      <div class="setting-row">
+        <span>Auto-Save Settings & Drafts</span>
+        <input type="checkbox" id="autoSaveToggle" checked />
+      </div>
+
+      <div class="setting-row">
+        <span>HD Export Default</span>
+        <input type="checkbox" id="hdExportToggle" checked />
+      </div>
+
+      <div class="setting-row">
+        <span>Cloud Auto-Backup</span>
+        <input type="checkbox" id="cloudBackupToggle" />
+      </div>
+    </div>
+  </div>
+
+  <!-- POPUP 2: PROJECT THREE DOTS BOTTOM SHEET (DELETE, UPLOAD TO CLOUD, COPY, RENAME, CANCEL) -->
+  <div class="sheet-backdrop" id="projectActionSheet">
+    <div class="action-sheet">
+      <button class="sheet-item delete" id="actDelete">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="3 6 5 6 21 6"/>
+          <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/>
+          <path d="M10 11v6M14 11v6"/>
+        </svg>
+        <span>Delete</span>
+      </button>
+
+      <button class="sheet-item" id="actCloud">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/>
+          <polyline points="12 13 12 21"/>
+          <polyline points="9 16 12 13 15 16"/>
+        </svg>
+        <span>Upload to Cloud</span>
+      </button>
+
+      <button class="sheet-item" id="actCopy">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="9" y="9" width="13" height="13" rx="2"/>
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+        </svg>
+        <span>Copy</span>
+      </button>
+
+      <button class="sheet-item" id="actRename">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 20h9"/>
+          <path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/>
+        </svg>
+        <span>Rename</span>
+      </button>
+
+      <button class="sheet-cancel" id="actCancel">Cancel</button>
+    </div>
+  </div>
+
+  <script>
+    const STORAGE_KEY = "studio_me_persistent_state_v1";
+
+    const defaultState = {
+      theme: "light", // White theme by default / on close
+      autoWhiteOnClose: true,
+      autoSave: true,
+      hdExport: true,
+      cloudBackup: false,
+      userName: "Log In",
+      credits: 0,
+      drafts: [
+        {
+          id: "d1",
+          title: "11-12 10:17",
+          date: "2026.11.12 10:17",
+          duration: "00:07",
+          size: "125K",
+          cloud: false
+        },
+        {
+          id: "d2",
+          title: "11-11 20:00",
+          date: "2026.11.11 20:00",
+          duration: "00:47",
+          size: "11.3M",
+          cloud: false
+        }
+      ]
+    };
+
+    function loadState() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) return structuredClone(defaultState);
+        return { ...structuredClone(defaultState), ...JSON.parse(raw) };
+      } catch {
+        return structuredClone(defaultState);
+      }
+    }
+
+    let state = loadState();
+    let activeDraftId = null;
+
+    function persistState(msg) {
+      if (state.autoSave) {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      }
+      if (msg) showToast(msg);
+    }
+
+    function showToast(text) {
+      const el = document.getElementById("toastMsg");
+      el.textContent = text;
+      el.style.display = "block";
+      clearTimeout(showToast._t);
+      showToast._t = setTimeout(() => {
+        el.style.display = "none";
+      }, 1700);
+    }
+
+    // Apply Theme & Sync Settings Controls
+    function applyTheme(themeName, shouldSave = true) {
+      state.theme = themeName;
+      document.documentElement.setAttribute("data-theme", themeName);
+      document.getElementById("chooseWhiteTheme").classList.toggle("active", themeName === "light");
+      document.getElementById("chooseBlackTheme").classList.toggle("active", themeName === "dark");
+      document.getElementById("themeBadgeText").textContent =
+        themeName === "light" ? "Theme: White Theme (Saved)" : "Theme: Black Theme (Saved)";
+      if (shouldSave) persistState();
+    }
+
+    // When app is closed or hidden -> switch to White Theme and save all settings
+    function handleAppCloseSave() {
+      if (state.autoWhiteOnClose) {
+        state.theme = "light";
+        document.documentElement.setAttribute("data-theme", "light");
+      }
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    }
+
+    window.addEventListener("beforeunload", handleAppCloseSave);
+    document.addEventListener("visibilitychange", () => {
+      if (document.visibilityState === "hidden") {
+        handleAppCloseSave();
+      }
+    });
+
+    // Render Drafts List
+    function renderDrafts() {
+      const listEl = document.getElementById("draftList");
+      document.getElementById("draftsCountLabel").textContent = `Drafts ${state.drafts.length}`;
+      listEl.innerHTML = "";
+
+      state.drafts.forEach((item) => {
+        const card = document.createElement("div");
+        card.className = "draft-card";
+        card.innerHTML = `
+          <div class="draft-thumb">
+            <div style="font-size:1.1rem;margin-bottom:4px;">⚠</div>
+            <div>Project Preview</div>
+          </div>
+          <div class="draft-info">
+            <div class="draft-title-row">
+              <div class="draft-name">
+                ${escapeHtml(item.title)}
+                ${item.cloud ? '<span class="cloud-tag">Cloud</span>' : ""}
+              </div>
+              <span style="color:var(--muted);font-size:0.85rem;">?</span>
+            </div>
+            <div class="draft-date">${escapeHtml(item.date)}</div>
+            <div class="draft-bottom-row">
+              <div class="draft-meta">Duration: ${escapeHtml(item.duration)} | ${escapeHtml(item.size)}</div>
+              <button class="dots-trigger" aria-label="Project Options">•••</button>
+            </div>
+          </div>
+        `;
+
+        card.querySelector(".dots-trigger").addEventListener("click", () => {
+          activeDraftId = item.id;
+          document.getElementById("projectActionSheet").classList.add("open");
+        });
+
+        listEl.appendChild(card);
+      });
+    }
+
+    function escapeHtml(s) {
+      return String(s)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;");
+    }
+
+    // Settings Popup Controls
+    const settingsModal = document.getElementById("settingsModal");
+    document.getElementById("openSettingsBtn").addEventListener("click", () => {
+      settingsModal.classList.add("open");
+    });
+    document.getElementById("closeSettingsBtn").addEventListener("click", () => {
+      settingsModal.classList.remove("open");
+      persistState("Settings Saved");
+    });
+    settingsModal.addEventListener("click", (e) => {
+      if (e.target === settingsModal) {
+        settingsModal.classList.remove("open");
+        persistState("Settings Saved");
+      }
+    });
+
+    document.getElementById("chooseWhiteTheme").addEventListener("click", () => {
+      applyTheme("light", true);
+      showToast("White Theme Applied & Saved");
+    });
+
+    document.getElementById("chooseBlackTheme").addEventListener("click", () => {
+      applyTheme("dark", true);
+      showToast("Black Theme Applied & Saved");
+    });
+
+    const autoWhiteCheck = document.getElementById("autoWhiteOnClose");
+    const autoSaveCheck = document.getElementById("autoSaveToggle");
+    const hdExportCheck = document.getElementById("hdExportToggle");
+    const cloudBackupCheck = document.getElementById("cloudBackupToggle");
+
+    autoWhiteCheck.checked = state.autoWhiteOnClose;
+    autoSaveCheck.checked = state.autoSave;
+    hdExportCheck.checked = state.hdExport;
+    cloudBackupCheck.checked = state.cloudBackup;
+
+    [
+      [autoWhiteCheck, "autoWhiteOnClose"],
+      [autoSaveCheck, "autoSave"],
+      [hdExportCheck, "hdExport"],
+      [cloudBackupCheck, "cloudBackup"]
+    ].forEach(([el, key]) => {
+      el.addEventListener("change", () => {
+        state[key] = el.checked;
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+        showToast("Setting Saved");
+      });
+    });
+
+    // Project Three-Dots Bottom Sheet Actions
+    const sheet = document.getElementById("projectActionSheet");
+    function closeSheet() {
+      sheet.classList.remove("open");
+    }
+    sheet.addEventListener("click", (e) => {
+      if (e.target === sheet) closeSheet();
+    });
+    document.getElementById("actCancel").addEventListener("click", closeSheet);
+
+    document.getElementById("actDelete").addEventListener("click", () => {
+      state.drafts = state.drafts.filter((d) => d.id !== activeDraftId);
+      persistState("Draft Deleted");
+      renderDrafts();
+      closeSheet();
+    });
+
+    document.getElementById("actCloud").addEventListener("click", () => {
+      const target = state.drafts.find((d) => d.id === activeDraftId);
+      if (target) {
+        target.cloud = true;
+        persistState("Uploaded to Cloud");
+        renderDrafts();
+      }
+      closeSheet();
+    });
+
+    document.getElementById("actCopy").addEventListener("click", () => {
+      const target = state.drafts.find((d) => d.id === activeDraftId);
+      if (target) {
+        state.drafts.unshift({
+          ...target,
+          id: "d_" + Date.now(),
+          title: target.title + " (Copy)"
+        });
+        persistState("Draft Copied");
+        renderDrafts();
+      }
+      closeSheet();
+    });
+
+    document.getElementById("actRename").addEventListener("click", () => {
+      const target = state.drafts.find((d) => d.id === activeDraftId);
+      closeSheet();
+      if (!target) return;
+      const nextName = prompt("नया प्रोजेक्ट नाम लिखें:", target.title);
+      if (nextName && nextName.trim()) {
+        target.title = nextName.trim();
+        persistState("Project Renamed");
+        renderDrafts();
+      }
+    });
+
+    // Add New Draft Button
+    document.getElementById("newDraftBtn").addEventListener("click", () => {
+      const now = new Date();
+      const pad = (n) => String(n).padStart(2, "0");
+      const stamp = `${pad(now.getMonth() + 1)}-${pad(now.getDate())} ${pad(now.getHours())}:${pad(now.getMinutes())}`;
+      state.drafts.unshift({
+        id: "d_" + Date.now(),
+        title: stamp,
+        date: `${now.getFullYear()}.${pad(now.getMonth() + 1)}.${pad(now.getDate())} ${pad(now.getHours())}:${pad(now.getMinutes())}`,
+        duration: "00:15",
+        size: "4.2M",
+        cloud: false
+      });
+      persistState("New Draft Saved");
+      renderDrafts();
+    });
+
+    // Profile Name / Log In click
+    document.getElementById("profileName").textContent = state.userName;
+    document.getElementById("profileName").addEventListener("click", () => {
+      const name = prompt("अपना नाम लिखें:", state.userName === "Log In" ? "" : state.userName);
+      if (name && name.trim()) {
+        state.userName = name.trim();
+        document.getElementById("profileName").textContent = state.userName;
+        persistState("Profile Saved");
+      }
+    });
+
+    // Bottom Navigation Tabs
+    document.querySelectorAll(".nav-btn").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll(".nav-btn").forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+        showToast(`${btn.dataset.tab} Tab`);
+      });
+    });
+
+    // Initial Render
+    applyTheme(state.theme, false);
+    renderDrafts();
+  </script>
+</body>
+</html>

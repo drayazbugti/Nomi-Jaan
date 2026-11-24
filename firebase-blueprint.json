@@ -1,0 +1,58 @@
+{
+  "entities": {
+    "CloudRecord": {
+      "title": "CloudRecord",
+      "description": "A user-owned cloud backend record or studio preset synced in Bugti Editz.",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "Authenticated Firebase UID of the record owner."
+        },
+        "title": {
+          "type": "string",
+          "description": "Title or project name (1 to 120 characters)."
+        },
+        "category": {
+          "type": "string",
+          "description": "Category or tag (1 to 60 characters, e.g., Preset, Asset, User Data)."
+        },
+        "payload": {
+          "type": "string",
+          "description": "Backend data, preset description, or JSON payload (1 to 4000 characters)."
+        },
+        "appTag": {
+          "type": "string",
+          "description": "Application identifier tag (e.g., Bugti Editz)."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server-generated creation timestamp via FieldValue.serverTimestamp()."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server-generated update timestamp via FieldValue.serverTimestamp()."
+        }
+      },
+      "required": [
+        "userId",
+        "title",
+        "category",
+        "payload",
+        "appTag",
+        "createdAt",
+        "updatedAt"
+      ]
+    }
+  },
+  "firestore": {
+    "/users/{userId}/cloud_records/{recordId}": {
+      "schema": {
+        "$ref": "#/entities/CloudRecord"
+      },
+      "description": "Per-user isolated cloud backend records and synced studio presets."
+    }
+  }
+}

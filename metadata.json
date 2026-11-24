@@ -1,0 +1,6 @@
+{
+  "name": "Bugti Editz",
+  "description": "Ultra HD photo and video enhancer, color grading, portrait retouch, and live cloud backend sync.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
